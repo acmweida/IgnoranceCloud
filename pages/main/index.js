@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    checked:1
   },
 
   /**
@@ -62,5 +62,19 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  choose(even) {
+   // console.log(even)
+    this.setData({
+      checked:even.target.id
+    })
+  },
+
+  swiper_change(event) {
+    this.setData({
+      checked:event.detail.currentItemId
+    })
   }
+  
 })

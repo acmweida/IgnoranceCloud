@@ -1,13 +1,29 @@
 
 <view class="container">
     <view class="top-container">
-        <image class="img" src="/imgs/menu.png" />
+        <image class="img left_imge" src="/imgs/menu.png" />
         <view class="sub-container">
-            <navigator open-type="redirect"  id = "0" url="/pages/my/index"  class="nai-text {{checked==0 ? 'nai-text_checked':''}}" >我的</navigator>
-            <navigator open-type="redirect" id = "1" url="/pages/main/index"  class="nai-text {{checked==1 ? 'nai-text_checked':''}}">发现</navigator>
-            <navigator open-type="redirect"id = "2" url="/pages/my/index" class="nai-text {{checked==2 ? 'nai-text_checked':''}}">朋友</navigator>
-            <navigator open-type="reLaunch" id = "3" url="/pages/my/index"  class="nai-text {{checked==3 ? 'nai-text_checked':''}}" >视频</navigator> 
+            <view bindtap="choose" id = "0"   class="nai-text {{checked==0 ? 'nai-text_checked':''}}" >我的</view>
+            <view bindtap="choose" id = "1" class="nai-text {{checked==1 ? 'nai-text_checked':''}}">发现</view>
+            <view bindtap="choose" id = "2"class="nai-text {{checked==2 ? 'nai-text_checked':''}}">朋友</view>
+            <view bindtap="choose" id = "3"  class="nai-text {{checked==3 ? 'nai-text_checked':''}}" >视频</view> 
         </view>
-        <image class="img" src="/imgs/search.png" />
-    </view>    
+        <image class="img right_image" src="/imgs/search.png" />
+    </view> 
+    <view class="main-container">
+    <swiper current="{{checked}}" bindchange="swiper_change">
+      <swiper-item item-id="0">
+        <c-my></c-my>
+      </swiper-item>
+      <swiper-item item-id="1">
+        <c-find></c-find>
+      </swiper-item>
+      <swiper-item item-id="2">
+        <c-friend></c-friend>
+      </swiper-item>
+      <swiper-item item-id="3">
+        <c-video></c-video>
+      </swiper-item>
+    </swiper>   
+    </view>
 </view>

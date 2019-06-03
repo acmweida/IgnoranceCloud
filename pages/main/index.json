@@ -1,3 +1,8 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "c-my":"/components/my/index",
+    "c-find": "/components/find/index",
+    "c-friend":"/components/friend/index",
+    "c-video":"/components/video/index"
+  }
 }
