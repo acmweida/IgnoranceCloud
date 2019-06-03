@@ -1,8 +1,11 @@
 import { config } from '../config.js'
 
 const tips = {
-  '301':"未登陆",
-  '509':"用户名或密码登陆"
+  1:"遇到一个未知错误",
+  301:"未登陆",
+  509:"登陆太频繁",
+  502:"密码错误",
+  400:"号码错误"
 }
 // # 解构
 class HTTP {
@@ -25,7 +28,7 @@ class HTTP {
       },
       success: (res) => {
         const code = res.statusCode.toString()
-        console.log(code)
+      //  console.log(res)
         if (code.startsWith('2')) {
           resolve(res.data)
           this.cookies = res.header['Set-Cookie']
@@ -33,14 +36,18 @@ class HTTP {
         else {
           if (reject)
             reject()
-          const error_code = res.data.error_code
+          
+          const error_code = res.data.code
+      //    console.log(error_code)
           this._show_error(error_code)
         }
       },
       fail: (err) => {
+        
         if (reject)
           reject()
-        const error_code = res.data.error_code
+        const error_code = err.data.code
+       // console.log(error_code)
         this._show_error(error_code)
       }
     })
@@ -48,6 +55,7 @@ class HTTP {
   }
 
   _show_error(error_code) {
+    
     if (!error_code) {
       error_code = 1
     }

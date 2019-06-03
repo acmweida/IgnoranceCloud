@@ -14,11 +14,8 @@ export class UserModel {
   }
 
   login(phone,password){
-
     //console.log(config.api_login)
-
-
-
+    login_ok : true
     http.request({
       url: config.api_login,
       data: {
@@ -26,35 +23,24 @@ export class UserModel {
         password: password
       }
     }).then(res => {
-      console.log(res)
+      const user = res
+      wx.setStorage({
+        key: 'user',
+        data: {
+           user
+        }
+      })
+      //console.log(res)
       wx.setStorage({
             key: 'userinfo',
             data: {
-              phone: this.data.phone,
-              password: this.data.password
+              phone: phone,
+              password: password
             }
-      })
+        })
+        this.login_ok = true
       }
     )
-    
-    // wx.request({
-    //   url: app.globalData.url + config.login,
-    //   data: {
-    //     phone: phone,
-    //     password: password
-    //   },
-    //   success: (res) => {
-    //     if (res.data.code == 200) {
-          
-    //      // app.globalData.cookies = res.header['Set-Cookie']
-          
-    //       wx.redirectTo({
-    //         url: '/pages/main/index',
-    //       })
-    //     } else {
-          
-    //     }
-    //   }
-    // })
+    return this.login_ok
   }
 }

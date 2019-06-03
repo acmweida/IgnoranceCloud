@@ -1,0 +1,13 @@
+
+<view class="container">
+    <view class="top-container">
+        <image class="img" src="/imgs/menu.png" />
+        <view class="sub-container">
+            <navigator open-type="redirect"  id = "0" url="/pages/my/index"  class="nai-text {{checked==0 ? 'nai-text_checked':''}}" >我的</navigator>
+            <navigator open-type="redirect" id = "1" url="/pages/main/index"  class="nai-text {{checked==1 ? 'nai-text_checked':''}}">发现</navigator>
+            <navigator open-type="redirect"id = "2" url="/pages/my/index" class="nai-text {{checked==2 ? 'nai-text_checked':''}}">朋友</navigator>
+            <navigator open-type="reLaunch" id = "3" url="/pages/my/index"  class="nai-text {{checked==3 ? 'nai-text_checked':''}}" >视频</navigator> 
+        </view>
+        <image class="img" src="/imgs/search.png" />
+    </view>    
+</view>
