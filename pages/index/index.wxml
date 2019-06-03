@@ -1,0 +1,6 @@
+<!--index.wxml-->
+<view class="container">
+  <input class="weui-input" placeholder='手机号' placeholder-class="placeholder" bindinput='phone'/>
+    <input class="weui-input" placeholder='密码' type='password' placeholder-class="placeholder" bindinput='password'/>
+    <button  bindtap='login' class="weui-button button" type='warn'>绑定</button>
+</view>
