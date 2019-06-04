@@ -13,7 +13,7 @@
     <view class="main-container">
     <swiper current="{{checked}}" bindchange="swiper_change">
       <swiper-item item-id="0">
-        <c-my></c-my>
+        <template is="my" />
       </swiper-item>
       <swiper-item item-id="1">
         <c-find></c-find>
