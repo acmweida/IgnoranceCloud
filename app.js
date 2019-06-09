@@ -4,6 +4,9 @@ App({
  
   },
   globalData: {
-    userInfo: null
+    userInfo: null,
+    loop: false,
+    oneloop: true,
+    random: true,
   }
 })

@@ -1,4 +1,3 @@
-
 <view class="container">
     <view class="top-container">
         <image class="img left_imge" src="/imgs/menu.png" />
@@ -11,18 +10,26 @@
         <image class="img right_image" src="/imgs/search.png" />
     </view> 
     <view class="main-container">
-    <swiper current="{{checked}}" bindchange="swiper_change">
-      <swiper-item item-id="0">
-        <template is="my" />
+    <swiper current="{{checked}}" class="swiper" bindchange="swiper_change">
+      <swiper-item  item-id="0">
+        <scroll-view scroll-y class="scroll_view">
+          <c-my/>
+          </scroll-view>
       </swiper-item>
       <swiper-item item-id="1">
-        <c-find></c-find>
+        <scroll-view scroll-y class="scroll_view">
+        <c-find/>
+        </scroll-view>
       </swiper-item>
       <swiper-item item-id="2">
-        <c-friend></c-friend>
+        <scroll-view  scroll-y class="scroll_view">
+        <c-friend/>
+        </scroll-view>
       </swiper-item>
       <swiper-item item-id="3">
-        <c-video></c-video>
+        <scroll-view  scroll-y class="scroll_view">
+         <c-video/>
+        </scroll-view>
       </swiper-item>
     </swiper>   
     </view>

@@ -1,2 +1,3 @@
 <!--components/find/index.wxml-->
-<text>components/find/index.wxml</text>
+<text  bindtap="click">components/find/index.wxml</text>
+<text  bindtap="click1">components/find/index.wxml</text>

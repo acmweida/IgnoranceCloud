@@ -1,8 +1,7 @@
 import {HTTP} from "../utils/http.js";
 import { config } from "../config.js";
-const http = new HTTP()
 
-export class UserModel {
+export class UserModel extends HTTP {
   isLoaded() {
     const userinfo = wx.getStorageSync(
       'userinfo'
@@ -16,7 +15,7 @@ export class UserModel {
   login(phone,password){
     //console.log(config.api_login)
     login_ok : true
-    http.request({
+    this.request({
       url: config.api_login,
       data: {
         phone: phone,
@@ -42,5 +41,20 @@ export class UserModel {
       }
     )
     return this.login_ok
+  }
+
+  getUserListOfSongList(sCallback) {
+    const userinfo = wx.getStorageSync('user').user
+    //console.log(userinfo)
+    const promise = this.request({
+      url:  'user/playlist',
+      data:{
+        uid: userinfo.account.id
+      }
+    }).then(res=>{
+        console.log("---")
+        console.log(res.playlist)
+         sCallback(res.playlist)
+       })
   }
 }

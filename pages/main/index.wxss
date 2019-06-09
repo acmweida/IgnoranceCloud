@@ -37,6 +37,8 @@
   margin-top: 10rpx;
   margin-left: 10rpx;
   margin-right: 10rpx;
+  display: flex;
+  flex-direction: row;
 }
 
 .left_imge {
@@ -60,4 +62,14 @@
 .nai-text_checked  {
     font-size: 42rpx;
     font-weight: 500rpx;
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+.scroll_view {
+  height: 100%;
 }

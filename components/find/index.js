@@ -14,10 +14,19 @@ Component({
 
   },
 
+  created() {
+
+  },
+
   /**
    * 组件的方法列表
    */
   methods: {
-
+    click(event) {
+      console.log(2)
+    },
+    click1(event) {
+      console.log(3)
+    }
   }
 })

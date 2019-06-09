@@ -2,7 +2,8 @@
   "pages": [
     "pages/login/index",
     "pages/main/index",
-    "pages/my/index"
+    "pages/playlist/index",
+    "pages/audio/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
