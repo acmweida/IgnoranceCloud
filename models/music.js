@@ -3,10 +3,7 @@ var app = getApp()
 export class MusicModel extends HTTP{
     getRecommendSongList() {
       return this.request({
-        url:'recommend/resource',
-        data:{
-          timestamp:(new Date()).getTime()
-        }
+        url:'recommend/resource'
       })
     }
 
@@ -15,6 +12,9 @@ export class MusicModel extends HTTP{
         url:'recommend/songs'
       })
     }
+
+    
+
 
    getSongListDetail(sCallback) {
      const listid = wx.getStorageSync('listid' )
@@ -27,39 +27,54 @@ export class MusicModel extends HTTP{
       }).then(
         res => {
             console.log(res)
+            console.log(res.playlist)
+          wx.setStorageSync("playlist", res.playlist.tracks)
             sCallback(res)
-            // this.setData({
-            //   playList: res.playlist,
-            //   songList: res.privileges
-            // })
-
-            //   wx.request({
-            //       url:app.globalData.url+'/song/detail',
-            //       data:{
-            //           ids:res.playList.join
-            //       },
-            //       success:res=> {
-            //           console.log(res)
-            //       }
-            //   })
-            // app.globalData.playList = this.data.songList
-            //   var i;
-            //   for(i = 0; i < this.data.songList.length;i++){
-            //       console.log(i)
-            //       wx.request({
-            //           url: app.globalData.url + 'song/detail',
-            //           data:{
-            //               id: this.data.songList[i].id,
-            //           },
-            //           success: res => {
-            //               console.log(res.data)
-            //           },
-            //           fail: err => {
-            //               console.log(err)
-            //           }
-            //       })
-            //   }
           } 
       )
    }
+
+  getSong() {
+    const id = wx.getStorageSync("songid")
+    const playlist = wx.getStorageSync("playlist")
+
+    const songid = playlist[id].id
+    const songinfo = this.getSongInfo(songid)
+    const songdetail = this.getSongDetail(songid)
+    const songword = this.getSongWord(songid)
+    return Promise.all([songinfo, songdetail, songword])
+  }
+
+
+  getSongInfo(songid) {
+      //获取歌曲信息
+      return this.request({
+        url: 'song/url',
+        data:{
+          id:songid
+        }
+      })
+  }
+
+
+  getSongDetail(songid) {
+     //请求detail
+
+     return this.request({
+       url: 'song/detail',
+       data:{
+         ids:songid
+       }
+     })
+  }
+
+  getSongWord(songid) {
+    //获取歌词
+    return this.request({
+      url: 'lyric',
+      data:{
+        id:songid
+      }
+    })
+  }
 }

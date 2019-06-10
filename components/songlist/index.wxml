@@ -1,0 +1,6 @@
+<view bind:tap="onTap" class="container">
+    <image src="{{songlist.picUrl}}"></image>
+    <view class="description">
+        {{songlist.name}}
+    </view>
+</view>

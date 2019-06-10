@@ -1,13 +1,13 @@
 <view class="container">
     <view class="top-container">
-        <image class="img left_imge" src="/imgs/menu.png" />
+        <image class="img left_imge" style="width:{{img_with}}px" src="/imgs/menu.png" />
         <view class="sub-container">
-            <view bindtap="choose" id = "0"   class="nai-text {{checked==0 ? 'nai-text_checked':''}}" >我的</view>
-            <view bindtap="choose" id = "1" class="nai-text {{checked==1 ? 'nai-text_checked':''}}">发现</view>
-            <view bindtap="choose" id = "2"class="nai-text {{checked==2 ? 'nai-text_checked':''}}">朋友</view>
+            <view bindtap="choose" id = "0"  class="nai-text {{checked==0 ? 'nai-text_checked':''}}" >我的</view>
+            <view bindtap="choose" id = "1"  class="nai-text {{checked==1 ? 'nai-text_checked':''}}">发现</view>
+            <view bindtap="choose" id = "2"  class="nai-text {{checked==2 ? 'nai-text_checked':''}}">朋友</view>
             <view bindtap="choose" id = "3"  class="nai-text {{checked==3 ? 'nai-text_checked':''}}" >视频</view> 
         </view>
-        <image class="img right_image" src="/imgs/search.png" />
+        <image class="img right_image " style="width:{{img_with}}px" src="/imgs/search.png" />
     </view> 
     <view class="main-container">
     <swiper current="{{checked}}" class="swiper" bindchange="swiper_change">

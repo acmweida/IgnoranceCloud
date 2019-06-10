@@ -5,13 +5,23 @@ Page({
    * 页面的初始数据
    */
   data: {
-    checked:0
+    checked:1,
+    img_with:0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    const _that = this
+    wx.getSystemInfo({
+      success: function (res) {
+        console.log(res.windowHeight)
+        _that.setData({
+          img_with:res.windowHeight*0.09
+        })
+      }
+    })
 
   },
 

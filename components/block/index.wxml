@@ -1,0 +1,10 @@
+<view bind:tap="onChick" class="container" >
+  <image class='img' src="{{url}}">
+  </image>
+ <view class="cen">
+    <slot name="number" ></slot>
+  </view>
+  <view>
+  <view class="sub-text">{{title}}</view>
+  </view>
+</view>

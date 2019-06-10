@@ -4,9 +4,11 @@ App({
  
   },
   globalData: {
+    backgroundAudioManage:null,
     userInfo: null,
     loop: false,
     oneloop: true,
     random: true,
+    cookies :''
   }
 })

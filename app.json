@@ -3,7 +3,8 @@
     "pages/login/index",
     "pages/main/index",
     "pages/playlist/index",
-    "pages/audio/index"
+    "pages/audio/index",
+    "pages/recommendSongs/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -11,5 +12,8 @@
     "navigationBarTitleText": "IgnoranceCloud",
     "navigationBarTextStyle": "black"
   },
+  "requiredBackgroundModes": [
+    "audio"
+  ],
   "sitemapLocation": "sitemap.json"
 }

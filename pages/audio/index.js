@@ -1,5 +1,7 @@
 var time = require('../../utils/time.js')
 var app = getApp();
+import { MusicModel } from '../../models/music.js'
+const musicMedel = new MusicModel()
 
 Page({
 
@@ -13,67 +15,37 @@ Page({
     showLrc: false,
     isStop: false,
     scroll: 0,
-    statusImg: '../../imgs/play.png',
+    statusImg: '../../imgs/pause.png',
     isMovingSlider: false,
     loop: false,
     oneloop: true,
     random: true
   },
+
+  onUnload: function() {
+    console.log("xxx")
+  },
+
   onLoad: function () {
-    this.setData({
-      loop: app.globalData.loop,
-      oneloop: app.globalData.oneloop,
-      random: app.globalData.random
-    })
-    wx.getStorage({
-      key: 'songid',
-      success: res => {
-        var id = app.globalData.playList[res.data].id
-        app.globalData.index = res.data
-        //请求url
-        wx.request({
-          url: app.globalData.url + 'song/url',
-          data: {
-            id: id
-          },
-          success: res => {
-            console.log(res.data.data[0].url)
-            this.setData({
-              songUrl: res.data.data[0].url
-            })
-            //请求detail
-            wx.request({
-              url: app.globalData.url + 'song/detail',
-              data: {
-                ids: id
-              },
-              success: res => {
-                console.log(res.data)
-                this.setData({
-                  song: res.data.songs[0]
-                })
-                console.log(this.data.song)
-                this.createAudio()
-              }
-            })
-          }
-        })
-        wx.request({
-          url: app.globalData.url + 'lyric',
-          data: {
-            id: id
-          },
-          success: res => {
-            console.log(res)
-            if (res.data.tlyric.lyric)
-              this.parseLyric(res.data.tlyric.lyric)
-            else
-              this.parseLyric(res.data.lrc.lyric)
-          }
-        })
-      }
+    musicMedel.getSong()
+    .then(res => {
+      console.log(res)
+      this.setData({
+        songUrl: res[0].data[0].url,
+        song: res[1].songs[0]
+      })
+      this.createAudio()
+      console.log(res[2].tlyric)
+      if (res[2].tlyric.lyric)
+        this.parseLyric(res[2].tlyric.lyric)
+      else
+        this.parseLyric(res[2].lrc.lyric)
     })
   },
+  
+
+  
+
   createAudio() {
     var _this = this;
     const backgroundAudioManager = wx.getBackgroundAudioManager()
@@ -144,7 +116,7 @@ Page({
     var backgroundAudioManager = app.globalData.backgroundAudioManage
     if (this.data.isStop) {
       this.setData({
-        statusImg: '../img/play.png',
+        statusImg: '../../imgs/pause.png',
         isStop: false
       })
       backgroundAudioManager.play();
@@ -152,7 +124,7 @@ Page({
     }
     else {
       this.setData({
-        statusImg: '../img/pause.png',
+        statusImg: '../../imgs/play.png',
         isStop: true
       })
       backgroundAudioManager.pause();
@@ -281,11 +253,12 @@ Page({
           active[key] = 'lrcActive'
           let height = wx.getSystemInfoSync().windowHeight * 0.85 * 0.7
           var query = wx.createSelectorQuery()
-          query.select('.lrcActive').boundingClientRect()
-          query.exec(res => {
-            console.log(res[0].top)
-            lrcHeight = res[0].top
-          })
+          query.select('.lrcActive').boundingClientRect().exec(
+            res => {
+              if (res[0]!=null) 
+                lrcHeight = res[0].top
+            }
+          )
           if (lrcHeight <= height * 2 / 5)
             _this.data.scroll += 15
           else
@@ -294,6 +267,7 @@ Page({
             active: active,
             scroll: _this.data.scroll
           })
+         
           temp = key;
           break;
         }
@@ -304,38 +278,71 @@ Page({
     }, 800)
   },
   pre() {
-    wx.setStorage({
-      key: 'songid',
-      data: --app.globalData.index,
-      success: () => {
-        wx.redirectTo({
-          url: '../audio/audio',
-        })
-      }
-    })
-  },
-  next() {
-    if (!this.data.loop)
-      wx.setStorage({
-        key: 'songid',
-        data: ++app.globalData.index,
-        success: () => {
-          wx.redirectTo({
-            url: '../audio/audio',
-          })
-        }
-      })
-    if (!this.data.oneloop)
-      wx.redirectTo({
-        url: '../audio/audio',
-      })
+    if (!this.data.oneloop) {
+      const backgroundAudioManager = app.globalData.backgroundAudioManage
+      backgroundAudioManager.seek(0.000)
+    }
     if (!this.data.random) {
       wx.setStorage({
         key: 'songid',
         data: this.idRandom(),
         success: () => {
           wx.redirectTo({
-            url: '../audio/audio',
+            url: '/pages/audio/index',
+          })
+        }
+      })
+    }
+    if (!this.data.loop) {
+    let songid = wx.getStorageSync("songid")
+    if (songid == 0) {
+      songid = wx.getStorageSync("playlist").length-1
+    } else {
+      --songid
+    }
+    wx.setStorage({
+      key: 'songid',
+      data: songid,
+      success: () => {
+        wx.redirectTo({
+          url: '/pages/audio/index',
+        })
+      }
+    })
+    }
+  },
+  next() {
+    
+    if (!this.data.loop) {
+      let songid = wx.getStorageSync("songid")
+      songid +=1 
+      if (songid == wx.getStorageSync("playlist").length) {
+        songid = 0
+      }
+      wx.setStorage({
+        key: 'songid',
+        data: songid,
+        success: () => {
+          wx.redirectTo({
+            url: '/pages/audio/index',
+          })
+        }
+      })
+    }
+    if (!this.data.oneloop) {
+      const backgroundAudioManager = app.globalData.backgroundAudioManage
+      backgroundAudioManager.seek(0.000)
+      // wx.redirectTo({
+      //   url: '/pages/audio/index',
+      // })
+    }
+    if (!this.data.random) {
+      wx.setStorage({
+        key: 'songid',
+        data: this.idRandom(),
+        success: () => {
+          wx.redirectTo({
+            url: '/pages/audio/index',
           })
         }
       })
@@ -367,15 +374,17 @@ Page({
     }
   },
   idRandom() {
-    var max = app.globalData.playList.length - 1
+    var max = wx.getStorageSync("playlist").length-1
     var min = 0
     return Math.floor(Math.random() * (max - min + 1) + min)
   },
   surprise() {
-    wx.showModal({
-      title: '彩蛋!!~',
-      content: '开发者addoneG的QQ号: 467072280~',
-      showCancel: false
-    })
+    // wx.showModal({
+    //   title: '彩蛋!!~',
+    //   content: '开发者addoneG的QQ号: 467072280~',
+    //   showCancel: false
+    // })
   }
+
+
 })

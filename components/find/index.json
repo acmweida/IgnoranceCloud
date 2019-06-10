@@ -1,4 +1,7 @@
 {
   "component": true,
-  "usingComponents": {}
+  "usingComponents": {
+    "c-block": "/components/block/index",
+    "c-songlist": "/components/songlist/index"
+  }
 }

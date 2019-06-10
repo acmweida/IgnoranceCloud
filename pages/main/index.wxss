@@ -5,7 +5,7 @@
     height: 100%;
     width: 100%;
     flex-direction: column;
-    padding: 0% 1% 0% 1%;
+    padding: 0% 1% 1% 0%;
 }
 
 .top-container {
@@ -28,14 +28,12 @@
 
 .img {
     height: 100%;
-    width: 90rpx;
+    
 }
 
 .main-container {
   height: 91%;
-  width: 100%;
-  margin-top: 10rpx;
-  margin-left: 10rpx;
+  
   margin-right: 10rpx;
   display: flex;
   flex-direction: row;

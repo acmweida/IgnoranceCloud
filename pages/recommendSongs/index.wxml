@@ -1,0 +1,34 @@
+<view>
+    <view class="bg" style="background-image: url({{playList.coverImgUrl}})">
+    </view>
+    <view class="topView">
+        <view class="imgView">
+            <image src="{{playList.coverImgUrl}}"></image>
+        </view>
+        <view class="briefView">
+            <view class="name">每日推荐</view>
+        </view>
+    </view>
+    <view class="playAll" bindtap='playAll'>
+        <image src="/imgs/playall.png" class="playallImg"></image>
+        <view class="playallText">播放全部(共{{playList.length}}首)</view>
+    </view>
+    <view class="songList">
+        <block wx:for="{{playList}}" wx:key="index">
+            <view class="item" data-id="{{index}}" bindtap="toAudio">
+                <view class="index">{{index+1}}</view>
+                <view class="rightView">
+                    <view class="song-title"> {{playList[index].name}}{{playList[index].alias}}</view>
+                    <view class="singer">
+                        {{playList[index].artists[0].name}}
+                      <text wx:if="{{playlist.artists.length > 1}}" wx:for="playList.artists" wx:key="index2">
+                          /{{index==0?"":playList[index].artists[index2].name}}
+                      </text>
+                       - 
+                      {{playList[index].album.name}}
+                    </view>
+                </view>
+            </view>
+        </block>
+    </view>
+</view>

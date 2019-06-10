@@ -1,4 +1,5 @@
 import { config } from '../config.js'
+var app = getApp()
 
 const tips = {
   1:"遇到一个未知错误",
@@ -10,14 +11,13 @@ const tips = {
 // # 解构
 class HTTP {
 
-  cookies = {};
-
   request({ url, data = {}, method = 'GET',reject }) {
     return new Promise((resolve, reject) => {
       this._request(url, resolve, reject, data, method)
     })
   }
   _request(url, resolve, reject, data = {}, method = 'GET') {
+    //console.log(app.globalData.cookies)
     console.log(config.api_base_url+url)
     wx.request({
       url: config.api_base_url + url,
@@ -25,14 +25,18 @@ class HTTP {
       data: data,
       header: {
         'content-type': 'application/json',
-        cookie: this.cookies
+        'cookie' : app.globalData.cookies
       },
       success: (res) => {
+        //console.log(res)
         const code = res.statusCode.toString()
-      //  console.log(res)
+        console.log(res)
         if (code.startsWith('2')) {
           resolve(res.data)
-          this.cookies = res.header['Set-Cookie']
+          //console.log(res.cookies)
+          if (res.cookies.join(';')!='')
+           app.globalData.cookies = res.cookies.join(';')
+      
         }
         else {
           if (reject)
@@ -44,7 +48,7 @@ class HTTP {
         }
       },
       fail: (err) => {
-        
+        console.log(err)
         if (reject)
           reject()
         const error_code = err.data.code
@@ -56,7 +60,7 @@ class HTTP {
   }
 
   _show_error(error_code) {
-    
+    console.log(error_code)
     if (!error_code) {
       error_code = 1
     }
