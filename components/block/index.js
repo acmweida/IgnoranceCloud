@@ -24,6 +24,7 @@ Component({
    */
   methods: {
     onChick(event) {
+     // console.log(event);
       this.triggerEvent("onTap",event.detail,{})
     }
   }

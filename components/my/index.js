@@ -38,7 +38,7 @@ Component({
           success: res => {
               console.log(res)
               wx.navigateTo({
-                  url: '../playList/index'
+                  url: '../playlist/index'
               })
           }
       })

@@ -1,6 +1,6 @@
 <view class="container">
   <block wx:for="{{nai}}" wx:key="item" >
-      <c-block url="{{item.src}}" bind:onTap="onClick" title="{{item.text}}" data-id="{{item.id}}">
+      <c-block  url="{{item.src}}" bind:onTap="onClick" title="{{item.text}}" data-id="{{item.id}}">
   <text hidden='{{!item.id==0}}' slot="number">{{day}}</text>
 </c-block>
 </block>
@@ -10,11 +10,11 @@
 </view>
 
 <view class="songlist-container">
-<view class="sub-container">
-    <view class="books-container">
-        <block wx:key="item" wx:for="{{songlist}}">
-           <c-songlist songlist="{{item}}" />
-        </block>
-    </view>
-</view>
+  <view class="sub-container">
+      <view class="books-container">
+          <block  wx:key="item" wx:for="{{songlist}}">
+            <c-songlist  songlist="{{item}}" />
+          </block>
+      </view>
+  </view>
 </view>

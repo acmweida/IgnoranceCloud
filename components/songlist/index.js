@@ -19,10 +19,21 @@ Component({
    */
   methods: {
     onTap(event){
-      const bid = this.properties.songlist.id
-      wx.navigateTo({
-        url:`/pages/book-detail/book-detail?bid=${bid}`
-      })
+      console.log(event)
+      const songlistid = this.properties.songlist.id
+      wx.setStorage({
+        key: 'listid',
+        data: songlistid,
+        success: res => {
+            console.log(res)
+            wx.navigateTo({
+                url: '../playlist/index'
+            })
+        }
+    })
+      // wx.navigateTo({
+      //   url:`/pages/book-detail/book-detail?bid=${bid}`
+      // })
       // 降低了组件的通用性
       // 非常方便
       // 服务于当前的项目 项目组件

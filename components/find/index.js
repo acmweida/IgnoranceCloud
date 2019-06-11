@@ -49,7 +49,7 @@ Component({
 
   created() {
     const that = this
-    musicModel.getRecommendSongList().then(
+    musicModel.getDayRecommendSongList().then(
       res => {
         console.log(res)
         that.setData({
@@ -62,17 +62,29 @@ Component({
   },
 
 
+ 
   /**
    * 组件的方法列表
    */
   methods: {
+    onSongList(event) {
+      console.log(event)
+    },
+
     onClick(event) {
       console.log(event)
       const id = event.target.dataset.id
       if (id == 0) {
         this._onGetRecommendSongs()
-      }
+      } else if (id==1) (
+        this._onNavigateToSonglist()
+      )
     },
+
+    _onNavigateToSonglist() {
+      
+    },
+
     _onGetRecommendSongs() {
       //console.log("xxx")
       const recommendSongs = wx.getStorageSync("recommedSongs"+(new Date()).getDate())

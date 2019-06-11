@@ -21,6 +21,7 @@
     background-color: #fff;
     padding: 0rpx 0rpx 0rpx 5rpx;
     font-size: 20rpx;
+    font-family: STXingkai;
     display: flex;
     flex-direction: column;
     height: 64rpx;

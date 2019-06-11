@@ -9,11 +9,12 @@ page,.body{
 }
 .sing-name{   
     font-size: 20px;
+    font-family: STXingkai;
     font-weight: 600;
-    font-family: "Arial","Microsoft YaHei","黑体","宋体",sans-serif;
 }
 .singer-name{
     font-size: 12px;
+    font-family: STXingkai;
 }
 .sing-show{
     position: relative;
@@ -57,6 +58,7 @@ page,.body{
 .process{
     font-size:12px;
     display: inline-block;
+    font-family: STXingkai;
     margin:10px 0;
     color: rgb(78,78,78);
 }
@@ -99,10 +101,12 @@ slider{
 }
 .lrc{
     font-size:15px;
+    font-family: STXingkai;
     margin-top: 13px;
 }
 .lrcActive{
     font-size:20px;
+    font-family: STXingkai;
     color:white;
 }
 .bg{

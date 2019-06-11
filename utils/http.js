@@ -17,7 +17,7 @@ class HTTP {
     })
   }
   _request(url, resolve, reject, data = {}, method = 'GET') {
-    //console.log(app.globalData.cookies)
+    console.log(app.globalData.cookies)
     console.log(config.api_base_url+url)
     wx.request({
       url: config.api_base_url + url,
@@ -34,9 +34,13 @@ class HTTP {
         if (code.startsWith('2')) {
           resolve(res.data)
           //console.log(res.cookies)
-          if (res.cookies.join(';')!='')
-           app.globalData.cookies = res.cookies.join(';')
-      
+          
+          //  if (res.cookies.join(';')!='')
+          //   app.globalData.cookies = res.cookies.join(';')
+          if (res.cookies.length>0) {
+            app.globalData.cookies = res.header['Set-cookies']
+          }
+
         }
         else {
           if (reject)

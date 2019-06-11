@@ -55,10 +55,12 @@
     justify-content: center;
     flex-direction: row;
     font-size: 36rpx;
+    font-family: STXingkai;
 }
 
 .nai-text_checked  {
     font-size: 42rpx;
+    font-family: STXingkai;
     font-weight: 500rpx;
 }
 

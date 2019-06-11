@@ -4,6 +4,7 @@
     "pages/main/index",
     "pages/playlist/index",
     "pages/audio/index",
+    "pages/singlessquare/index",
     "pages/recommendSongs/index"
   ],
   "window": {

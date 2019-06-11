@@ -1,7 +1,7 @@
 import { HTTP } from '../utils/http.js';
 var app = getApp()
 export class MusicModel extends HTTP{
-    getRecommendSongList() {
+    getDayRecommendSongList() {
       return this.request({
         url:'recommend/resource'
       })
@@ -12,9 +12,6 @@ export class MusicModel extends HTTP{
         url:'recommend/songs'
       })
     }
-
-    
-
 
    getSongListDetail(sCallback) {
      const listid = wx.getStorageSync('listid' )
@@ -56,7 +53,6 @@ export class MusicModel extends HTTP{
       })
   }
 
-
   getSongDetail(songid) {
      //请求detail
 
@@ -74,6 +70,29 @@ export class MusicModel extends HTTP{
       url: 'lyric',
       data:{
         id:songid
+      }
+    })
+  }
+
+  getSongListClassification() {
+    return  this.request({
+        url: 'playlist/hot'
+      })
+  }
+
+  getRecommendSongList() {
+    return this.request({
+      url:"personalized"
+    })
+  }
+
+  getSongListByKind(opent) {
+    return this.request({
+      url:"top/playlist",
+      data:{
+        cat:opent.cat,
+        before:opent.before,
+        limit:18
       }
     })
   }

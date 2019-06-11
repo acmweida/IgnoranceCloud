@@ -22,11 +22,12 @@ Page({
     random: true
   },
 
-  onUnload: function() {
-    console.log("xxx")
-  },
-
   onLoad: function () {
+    this.setData({
+      loop: app.globalData.loop,
+      oneloop: app.globalData.oneloop,
+      random: app.globalData.random
+    })
     musicMedel.getSong()
     .then(res => {
       console.log(res)
@@ -95,7 +96,20 @@ Page({
   },
   onShow() {
 
+    const backgroundAudioManager = wx.getBackgroundAudioManager()
+   
+    console.log("onShow")
+    console.log(this.data.showLrc)
+    backgroundAudioManager.onPlay(() => {
+      console.log("playing")
+      //console.log(res)
+    });
   },
+
+  onHide() {
+    console.log(this.data.isStop)
+  },
+  
   play: function () {
 
   },

@@ -21,6 +21,7 @@
     width: 100%; 
     color: black;
     font-size:12px;
+    font-family: STXingkai;
     overflow: hidden; 
     display:-webkit-box; 
     -webkit-box-orient:vertical;
@@ -51,8 +52,8 @@
     margin-left: 20px;
     line-height: 20px;
     font-size: 15px;
+    font-family: STXingkai;
     color: gray;
-    font-family: '黑体';
 }
 .item{
     width: 100%;
@@ -71,10 +72,12 @@
 }
 .song-title{
     font-size:12px;
+    font-family: STXingkai;
 }
 .singer{
     height: 40rpx;
     font-size:20rpx;
+    font-family: STXingkai;
 }
 /* 背景模糊 */
 .bg{
