@@ -82,7 +82,9 @@ Component({
     },
 
     _onNavigateToSonglist() {
-      
+      wx.navigateTo({
+        url: '/pages/singclassquare/index',
+      })
     },
 
     _onGetRecommendSongs() {

@@ -1,4 +1,4 @@
-import { MusicModel} from '../../models/music.js'
+import { MusicModel } from '../../models/music.js'
 const musicModel = new MusicModel()
 var app = getApp()
 Page({
@@ -15,7 +15,7 @@ Page({
       data => {
         console.log(data.playlist)
         this.setData({
-          playList:data.playlist,
+          playList: data.playlist,
           songList: data.privileges
         })
       }

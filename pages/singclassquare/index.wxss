@@ -65,31 +65,43 @@ scroll-view {
   color:transparent;
 }
 
+
 .songlist-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
 }
 
 .sub-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 100%;
-  height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
 }
 
 .books-container {
-  margin-top: 20rpx;
-  margin-left: 2%;
-  margin-right: 2%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
+    margin-top: 10rpx;
+    margin-left: 2%;
+    margin-right: 2%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 .books-container v-book{
-  margin-bottom: 10rpx;
+    margin-bottom: 10rpx;
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+
+
+.scroll_view {
+  height: 100%;
 }

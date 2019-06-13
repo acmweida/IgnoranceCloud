@@ -1,5 +1,6 @@
 <view bind:tap="onTap" class="container">
-    <image src="{{songlist.picUrl}}"></image>
+    <image wx:if="{{songlist.picUrl}}" src="{{songlist.picUrl}}"></image>
+    <image wx:if="{{songlist.coverImgUrl}}" src="{{songlist.coverImgUrl}}"></image>
     <view class="description">
         {{songlist.name}}
     </view>

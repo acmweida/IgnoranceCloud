@@ -86,14 +86,37 @@ export class MusicModel extends HTTP{
     })
   }
 
-  getSongListByKind(opent) {
-    return this.request({
+  getSongListByKind(cat) {
+      return this.request({
+          url:"top/playlist",
+          data:{
+            cat:cat,
+            before:0,
+            limit:18
+          }
+        })
+  }
+
+  getMoreSonglist(cat) {
+    let list = wx.getStorageSync(cat)
+    console.log(list)
+    this.request({
       url:"top/playlist",
       data:{
-        cat:opent.cat,
-        before:opent.before,
+        cat:cat,
+        before:list.length,
         limit:18
       }
+    }).then(res=>{
+      list =list.concat(res.playlists)
+      console.log(list)
+      wx.setStorage({
+        key:cat,
+        data:list
+      })
     })
+   
+
   }
+
 }

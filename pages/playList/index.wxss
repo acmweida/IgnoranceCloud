@@ -16,6 +16,7 @@
 }
 .name{
     color:white;
+    font-family: STXingkai;
 }
 .description{
     width: 100%; 

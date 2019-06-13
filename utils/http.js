@@ -35,11 +35,11 @@ class HTTP {
           resolve(res.data)
           //console.log(res.cookies)
           
-          //  if (res.cookies.join(';')!='')
-          //   app.globalData.cookies = res.cookies.join(';')
-          if (res.cookies.length>0) {
-            app.globalData.cookies = res.header['Set-cookies']
-          }
+            if (res.cookies.join(';')!='')
+             app.globalData.cookies = res.cookies.join(';')
+          // if (res.cookies.length>0) {
+          //   app.globalData.cookies = res.header['Set-cookies']
+          // }
 
         }
         else {
