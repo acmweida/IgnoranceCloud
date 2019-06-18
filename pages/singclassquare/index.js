@@ -1,6 +1,7 @@
 // pages/singlessquare/index.js
 import { MusicModel } from '../../models/music.js'
 const musicModel = new MusicModel()
+const date = new Date()
 Page({
 
   /**
@@ -18,7 +19,6 @@ Page({
    */
   onLoad: function (options) {
    
-    
   },
 
   /**
@@ -90,14 +90,15 @@ Page({
   },
   swiper_change(event) {
     const that = this
+    let day = date.getDate()
     console.log(event)
     if (event.detail.currentItemId==0) 
         return 
     
     const cat= this.data.SongListClassification[event.detail.currentItemId-1]
-    
+    wx.removeStorageSync(cat+day)
     console.log(cat)
-    const songlist_cat = wx.getStorageSync(cat)
+    const songlist_cat = wx.getStorageSync(cat+day)
     if (!songlist_cat&&cat) {
       musicModel.getSongListByKind(cat).
       then(res=>{
@@ -108,7 +109,7 @@ Page({
           Songlist:Songlist
         })
         wx.setStorage({
-          key:""+this.data.SongListClassification[this.data.choose-1].name,
+          key:this.data.SongListClassification[this.data.choose-1].name+day,
           data:res.playlists
         })
       })
@@ -128,6 +129,7 @@ Page({
   },
 
   onTap(event) {
+    let day = date.getDate()
     const that = this
     console.log(event)
     const chooseid = event.currentTarget.id
@@ -136,8 +138,9 @@ Page({
     })
     if (chooseid>0) {
       const cat= this.data.SongListClassification[chooseid-1].name
+      wx.removeStorageSync(cat + (day-1))
       console.log(cat)
-      const songlist_cat = wx.getStorageSync(cat)
+      const songlist_cat = wx.getStorageSync(cat + day)
       console.log(songlist_cat[0])
       if (!songlist_cat[0]) {
         musicModel.getSongListByKind(cat).
@@ -149,7 +152,7 @@ Page({
             Songlist:Songlist
           })
           wx.setStorage({
-            key: this.data.SongListClassification[this.data.choose-1].name,
+            key: this.data.SongListClassification[this.data.choose - 1].name + day,
             data:res.playlists
           })
         })
@@ -178,10 +181,11 @@ Page({
 
 
   getMore(event) {
+    let day = date.getDate()
     console.log(event)
     const cat = this.data.SongListClassification[this.data.choose-1].name
     musicModel.getMoreSonglist(cat)
-    const newSonglist = wx.getStorageSync(cat)
+    const newSonglist = wx.getStorageSync(cat + day)
     let Songlist=this.data.Songlist
     Songlist[this.data.SongListClassification[this.data.choose-1].name] = newSonglist
     this.setData({

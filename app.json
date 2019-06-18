@@ -5,7 +5,8 @@
     "pages/singclassquare/index",
     "pages/audio/index",
     "pages/recommendSongs/index",
-    "pages/playlist/index"
+    "pages/playlist/index",
+    "pages/search/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

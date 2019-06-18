@@ -98,7 +98,8 @@ export class MusicModel extends HTTP{
   }
 
   getMoreSonglist(cat) {
-    let list = wx.getStorageSync(cat)
+    let day = new Date().getDate()
+    let list = wx.getStorageSync(cat + day)
     console.log(list)
     this.request({
       url:"top/playlist",
@@ -109,9 +110,11 @@ export class MusicModel extends HTTP{
       }
     }).then(res=>{
       list =list.concat(res.playlists)
+      let day = new Date().getDate()
+      console.log(day)
       console.log(list)
       wx.setStorage({
-        key:cat,
+        key: cat + day,
         data:list
       })
     })

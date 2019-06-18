@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "c-search": "/components/search/search"
+  },
+  "backgroundColor":"#f5f5f5"
+}

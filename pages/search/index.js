@@ -1,27 +1,17 @@
-// pages/main/index.js
+// pages/search/index.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    checked:1,
-    img_with:0
+    searchPanel:false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const _that = this
-    wx.getSystemInfo({
-      success: function (res) {
-        console.log(res.windowHeight)
-        _that.setData({
-          img_with:res.windowHeight*0.09
-        })
-      }
-    })
 
   },
 
@@ -74,23 +64,16 @@ Page({
 
   },
 
-  choose(even) {
-   // console.log(even)
+  onActivateSearch:function(event){
     this.setData({
-      checked:even.target.id
+      searchPanel:true
     })
   },
 
-  swiper_change(event) {
-    this.setData({
-      checked:event.detail.currentItemId
-    })
-  },
 
-  serach(event) {
-    wx.navigateTo({
-      url: '/pages/search/index',
+  onCancel(event) {
+    this.setData({
+      searchPanel: false
     })
   }
-  
 })

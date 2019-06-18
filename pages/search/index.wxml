@@ -1,0 +1,11 @@
+<view>
+<view wx:if="{{!searchPanel}}" class="container">
+   <view class="header">
+     <view class='box' bind:tap="onActivateSearch">
+      <image src="/imgs/search1.png" />
+      <text>搜索歌曲</text>
+    </view> 
+  </view> 
+</view>
+  <c-search more="{{more}}" wx:if="{{searchPanel}}" bind:cancel="onCancel" />  
+</view>

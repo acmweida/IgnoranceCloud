@@ -48,12 +48,26 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 2,
 			"list": [
 				{
 					"id": -1,
 					"name": "gedgc",
 					"pathName": "pages/singclassquare/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "fsadfasdf",
+					"pathName": "pages/search/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "search",
+					"pathName": "pages/search/index",
 					"scene": null
 				}
 			]
